@@ -5,12 +5,12 @@ xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
-		<servlet-name>Blog_transmogrifier</servlet-name>
-		<servlet-class>blogtr.Blog_transmogrifierServlet</servlet-class>
+	    <servlet-name>content</servlet-name>
+	    <servlet-class>blogtr.ContentServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Blog_transmogrifier</servlet-name>
-		<url-pattern>/blog_transmogrifier</url-pattern>
+	    <servlet-name>content</servlet-name>
+	    <url-pattern>/content</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>blogtr.jsp</welcome-file>

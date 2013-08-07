@@ -18,7 +18,7 @@
 <p>Hello, ${fn:escapeXml(user.nickname)}! (You can
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
-<form action="/transm" method="post">
+<form action="/content" method="post">
     <div><textarea name="content" rows="5" cols="60"></textarea></div>
     <div><input type="submit" value="transmogrify" /></div>
 </form>

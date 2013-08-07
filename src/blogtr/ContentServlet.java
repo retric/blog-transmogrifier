@@ -12,7 +12,7 @@ public class ContentServlet extends HttpServlet {
    
    private static final Logger log = Logger.getLogger(ContentServlet.class.getName());
 
-   public void doGet(HttpServletRequest req, HttpServletResponse resp)
+   public void doPost(HttpServletRequest req, HttpServletResponse resp)
          throws IOException {
 
       UserService userService = UserServiceFactory.getUserService();
@@ -28,6 +28,6 @@ public class ContentServlet extends HttpServlet {
       } else {
          log.info("Greeting posted anonymously: " + content);
       }
-      resp.sendRedirect("/content.jsp");
+      resp.sendRedirect("/blogtr.jsp");
    }
 }
