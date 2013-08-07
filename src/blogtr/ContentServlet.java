@@ -2,7 +2,10 @@ package blogtr;
 
 import java.io.IOException;
 import java.util.logging.Logger;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -28,6 +31,15 @@ public class ContentServlet extends HttpServlet {
       } else {
          log.info("Greeting posted anonymously: " + content);
       }
-      resp.sendRedirect("/blogtr.jsp");
+      
+      req.setAttribute("content", content);
+      try { 
+          req.getRequestDispatcher("/blogtr.jsp").forward(req, resp); 
+          }
+      catch (ServletException e) {
+          
+      }
+          
+      
    }
 }

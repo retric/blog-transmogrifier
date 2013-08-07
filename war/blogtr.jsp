@@ -19,7 +19,7 @@
 <a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
 
 <form action="/content" method="post">
-    <div><textarea name="content" rows="5" cols="60"></textarea></div>
+    <div><textarea name="content" rows="5" cols="60">${content}</textarea></div>
     <div><input type="submit" value="transmogrify" /></div>
 </form>
 <%
