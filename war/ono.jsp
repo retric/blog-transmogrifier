@@ -15,16 +15,14 @@
     if (user != null) {
       pageContext.setAttribute("user", user);
 %>
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-<hr />
-You can transmogrify text:
+Enter an onomatopoeia word below. Or pick from a list!
 
-<form action="/content" method="post">
-    <div><textarea name="content" rows="5" cols="60">${content}</textarea></div>
-    <div><input type="submit" value="transmogrify" /></div>
+<form action="/ono" method="post">
+    <div><input name="ono"></div>
+    <div><input type="submit" value="input" /></div>
 </form>
-Or you can <a href="ono.jsp">add words</a>.
+
+Go <a href="blogtr.jsp">back</a>.
 
 <%
     } else {

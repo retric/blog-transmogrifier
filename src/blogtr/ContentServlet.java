@@ -25,7 +25,10 @@ public class ContentServlet extends HttpServlet {
 
       if (content == null) {
          content = "(No greeting)";
+      } else {
+         content = transmogrify(content);
       }
+      
       if (user != null) {
          log.info("Greeting posted by user " + user.getNickname() + ": " + content);
       } else {
@@ -40,6 +43,11 @@ public class ContentServlet extends HttpServlet {
           
       }
           
-      
+   }
+   
+   
+   String transmogrify (String content) {
+       
+       return content;
    }
 }
