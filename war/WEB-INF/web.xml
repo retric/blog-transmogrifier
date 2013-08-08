@@ -12,6 +12,14 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	    <servlet-name>content</servlet-name>
 	    <url-pattern>/content</url-pattern>
 	</servlet-mapping>
+	<servlet>
+	     <servlet-name>ono</servlet-name>
+	     <servlet-class>blogtr.OnoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>ono</servlet-name>
+	   <url-pattern>/ono</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>blogtr.jsp</welcome-file>
 	</welcome-file-list>

@@ -31,7 +31,7 @@ public class OnoServlet extends HttpServlet {
       String ono = req.getParameter("ono");
       
       if (ono == "") {
-          out.println("<html><head></head><body>Missing word input. Try again! Redirecting in 3 seconds...");
+          out.println("<html><head></head><body>Missing word input. Try again! Redirecting in 3 seconds...</body></html>");
       } else {
           String statement ="INSERT INTO ono (word) VALUES ( ? )";
           PreparedStatement stmt = c.prepareStatement(statement);
@@ -42,6 +42,8 @@ public class OnoServlet extends HttpServlet {
               out.println("<html><head></head><body>Success! Redirecting in 3 seconds...</body></html>");
           } else if (success == 0) {
               out.println("<html><head></head><body>Failure! Please try again! Redirecting in 3 seconds...</body></html>");
+          } else {
+              out.println("<html><head></head><body>Shouldn't get here. Redirecting in 3 seconds...</body></html>");
           }
       }
       
