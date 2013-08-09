@@ -18,8 +18,19 @@ import com.google.appengine.api.users.UserServiceFactory;
 @SuppressWarnings("serial")
 public class OnoServlet extends HttpServlet {
    
+   // logger
    private static final Logger log = Logger.getLogger(ContentServlet.class.getName());
-
+   
+   // success/fail messages
+   private String missingInput = "<html><head></head><body>Missing word input. Try again! Redirecting in 3 seconds...</body></html>";
+   private String successfulPost = "<html><head></head><body>Success! Redirecting in 3 seconds...</body></html>";
+   private String failedPost = "<html><head></head><body>Failure! Please try again! Redirecting in 3 seconds...</body></html>";
+   private String unexpectedValue = "<html><head></head><body>Shouldn't get here. Redirecting in 3 seconds...</body></html>";
+   
+   // sql statement
+   private String statement = "INSERT INTO ono (word) VALUES ( ? )";
+   
+   
    public void doPost(HttpServletRequest req, HttpServletResponse resp)
          throws IOException {
       PrintWriter out = resp.getWriter();
@@ -27,25 +38,26 @@ public class OnoServlet extends HttpServlet {
       
       try {
       DriverManager.registerDriver(new AppEngineDriver());
-      c = DriverManager.getConnection("jdbc:google:rdbms://transmog/transmog");
+      c = DriverManager.getConnection("jdbc:google:rdbms://ace-coda-300/transmog");
       String ono = req.getParameter("ono");
       
-      if (ono == "") {
-          out.println("<html><head></head><body>Missing word input. Try again! Redirecting in 3 seconds...</body></html>");
-      } else {
-          String statement ="INSERT INTO ono (word) VALUES ( ? )";
-          PreparedStatement stmt = c.prepareStatement(statement);
-          stmt.setString(1, ono);
-          int success = 2;
-          success = stmt.executeUpdate();
-          if (success == 1) {
-              out.println("<html><head></head><body>Success! Redirecting in 3 seconds...</body></html>");
-          } else if (success == 0) {
-              out.println("<html><head></head><body>Failure! Please try again! Redirecting in 3 seconds...</body></html>");
-          } else {
-              out.println("<html><head></head><body>Shouldn't get here. Redirecting in 3 seconds...</body></html>");
-          }
-      }
+         if (ono.equals("")) {
+            out.println(missingInput);
+         } else {
+            PreparedStatement stmt = c.prepareStatement(statement);
+            stmt.setString(1, ono);
+            
+            int success = 2;
+            success = stmt.executeUpdate();
+            
+            if (success == 1) {
+               out.println(successfulPost);
+            } else if (success == 0) {
+               out.println(failedPost);
+            } else {
+               out.println(unexpectedValue);
+            }
+         }
       
       } catch (SQLException e) {
           e.printStackTrace();
@@ -63,4 +75,5 @@ public class OnoServlet extends HttpServlet {
       
       resp.setHeader("Refresh", "3; url=/ono.jsp");    
    }
+      
 }
